@@ -1,4 +1,5 @@
 ﻿
+@model  tiket_airlines.admin
 <body>
 
     <br>
@@ -13,32 +14,40 @@
                 <hr class="garisLogin">
             </div>
             <div class="col-md-11">
-                <form class="daftar text-center" method="post" action="<%=request.getContextPath()%>/AdminController?action=login-admin">
-                    <div>
-                        <div id="ketikEmail" class="form-group {{error}}">
+                @using (Html.BeginForm("Login_admin", "Home", FormMethod.Post, new { @class = "form-horizontal daftar text-center", role = "form" }))
+                {
+                    
+                        <div id="ketikEmail" class="form-group @ViewBag.htmlError">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="email" placeholder="Email anda" type="email" value="faisalarkan21@gmail.com">
-                                </span>
+                                @Html.TextBoxFor(u => u.email_admin, new { @class = "form-control", @placeholder = "Masukan Email", @type = "email" })
+                               
                             </div>
                         </div>
-                        <div id="ketikPass" class="form-group  {{error}}">
+                        <div id="ketikPass" class="form-group @ViewBag.htmlError ">
                             <div class="input-group">
                                 <span class="input-group-addon">
                                     <i class="fa fa-eye-slash fa-lg"></i>
                                 </span>
-                                <input class="form-control" name="password" placeholder="Masukan Password" type="password" value="makan">
+                                @Html.TextBoxFor(u => u.pass_admin, new { @class = "form-control", @placeholder = "Masukan Password", @type = "password" })
                             </div>
 
                         </div>
+                        <div>
+
+                            <label style="margin-left: 25px; margin-top: 15px; color: #d32f2f !important;">
+                                @ViewBag.errorMessage
+                            </label>
+                        </div>
+
 
                         <div style="text-align: center;" id="pesan" class="form-group {{error}}">
 
                             <a class=" btn btn-raised btn-info btn-md" href="/daftar">Daftar</a>
                             <button id="login" class="btn btn-raised btn-primary" type="submit">Masuk</button>
                         </div>
-                    </div>
-                </form>
+                    
+                }
             </div>
         </div>
     </div>
