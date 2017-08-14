@@ -13,7 +13,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="varchar" MaxLength="2" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="prefix" Type="varchar" MaxLength="2" Nullable="false" />
     <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="harga_tiket" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_transfer" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -34,7 +34,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="varchar" MaxLength="3" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="prefix" Type="varchar" MaxLength="3" Nullable="false" />
     <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nm_pembeli" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="email_pembeli" Type="varchar" MaxLength="50" Nullable="false" />
@@ -57,19 +57,9 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="varchar" MaxLength="3" StoreGeneratedPattern="Computed" />
+    <Property Name="prefix" Type="varchar" MaxLength="3" />
     <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tgl_order" Type="varchar" MaxLength="300" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <Association Name="FK_detil_pesan_tiket_pajak_bandara">
     <End Role="pajak_bandara" Type="Self.pajak_bandara" Multiplicity="1" />
@@ -102,7 +92,6 @@
     <EntitySet Name="pembeli" EntityType="Self.pembeli" Schema="airlines_servlet" store:Type="Tables" />
     <EntitySet Name="pembeli_validasi" EntityType="Self.pembeli_validasi" Schema="airlines_servlet" store:Type="Tables" />
     <EntitySet Name="tgl_pesan" EntityType="Self.tgl_pesan" Schema="airlines_servlet" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_detil_pesan_tiket_pajak_bandara" Association="Self.FK_detil_pesan_tiket_pajak_bandara">
       <End Role="pajak_bandara" EntitySet="pajak_bandara" />
       <End Role="detil_pesan_tiket" EntitySet="detil_pesan_tiket" />

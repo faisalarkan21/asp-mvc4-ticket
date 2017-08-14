@@ -13,10 +13,10 @@ namespace tiket_airlines
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class tiket_airlinesEntities : DbContext
+    public partial class tiket_airlinesEntitiesMVC : DbContext
     {
-        public tiket_airlinesEntities()
-            : base("name=tiket_airlinesEntities")
+        public tiket_airlinesEntitiesMVC()
+            : base("name=tiket_airlinesEntitiesMVC")
         {
         }
     
@@ -25,12 +25,11 @@ namespace tiket_airlines
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<admin> admins { get; set; }
+        public virtual DbSet<admin> admin { get; set; }
         public virtual DbSet<detil_pesan_tiket> detil_pesan_tiket { get; set; }
         public virtual DbSet<pajak_bandara> pajak_bandara { get; set; }
-        public virtual DbSet<pembeli> pembelis { get; set; }
+        public virtual DbSet<pembeli> pembeli { get; set; }
         public virtual DbSet<pembeli_validasi> pembeli_validasi { get; set; }
         public virtual DbSet<tgl_pesan> tgl_pesan { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

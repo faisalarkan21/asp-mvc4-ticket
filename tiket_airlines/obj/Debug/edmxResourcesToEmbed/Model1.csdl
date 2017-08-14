@@ -13,7 +13,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="prefix" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="harga_tiket" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_transfer" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
@@ -38,7 +38,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nm_pembeli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="email_pembeli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -61,19 +61,9 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="tgl_order" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_detil_pesan_tiket_pajak_bandara">
     <End Role="pajak_bandara" Type="Self.pajak_bandara" Multiplicity="1" />
@@ -99,14 +89,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="tiket_airlinesEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="admins" EntityType="Self.admin" />
+  <EntityContainer Name="tiket_airlinesEntitiesMVC" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="Self.admin" />
     <EntitySet Name="detil_pesan_tiket" EntityType="Self.detil_pesan_tiket" />
     <EntitySet Name="pajak_bandara" EntityType="Self.pajak_bandara" />
-    <EntitySet Name="pembelis" EntityType="Self.pembeli" />
+    <EntitySet Name="pembeli" EntityType="Self.pembeli" />
     <EntitySet Name="pembeli_validasi" EntityType="Self.pembeli_validasi" />
     <EntitySet Name="tgl_pesan" EntityType="Self.tgl_pesan" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK_detil_pesan_tiket_pajak_bandara" Association="Self.FK_detil_pesan_tiket_pajak_bandara">
       <End Role="pajak_bandara" EntitySet="pajak_bandara" />
       <End Role="detil_pesan_tiket" EntitySet="detil_pesan_tiket" />
