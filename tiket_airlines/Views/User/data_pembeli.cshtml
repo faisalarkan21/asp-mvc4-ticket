@@ -1,0 +1,181 @@
+﻿<body>
+    <div id="navbarpro" class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/user/dashboard.jsp">
+                    Dashboard Tiket <i style="padding-left: 6px;" class="fa fa-users fa-fw " aria-hidden="true"></i>
+
+                    <div class="ripple-container">
+                    </div>
+                </a>
+            </div>
+            <div class="navbar-collapse navbar-inverse-collapse collapse">
+                <form class="navbar-form navbar-left ">
+                    <!--<div class="form-group">
+                      <button class="btn btn-raised" type="sumbit">Cari</button>
+                    </div>-->
+                </form>
+                <ul class="nav-drop nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-target="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-cog fa-spin fa-fw"></i>
+                            Login Sebagai : <%=session.getAttribute("user") %> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/keluar">Log Out  <i class="material-icons">keyboard_arrow_right</i> </a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Bantuan  </a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="nav-side-menu">
+        <div class="brand">
+            <i class="fa fa-shopping-basket fa-fw" aria-hidden="true"></i>
+            Halaman Pembeli
+        </div>
+        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+        <div class="menu-list">
+            <ul id="menu-content" class="menu-content collapse out">
+                <li>
+                    <a style="display: block;" href="<%=request.getContextPath()%>/halaman-user/user/dashboard.jsp">
+                        <i class="fa fa-home fa-lg"></i>Halaman Utama
+                    </a>
+                </li>
+
+                <li data-toggle="collapse" data-target="#data">
+                    <a href="#"><i class="fa fa-book fa-lg"></i>Data Pembeli <span class="arrow"></span></a>
+                </li>
+
+
+
+
+                <ul class="sub-menu collapse" id="data">
+                    <li class="active">
+                        <a href="<%=request.getContextPath()%>/UserController?action=data-pembeli&userId=<%=session.getAttribute(" id")%>
+                            " ><i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Data Pemesan
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="<%=request.getContextPath()%>/halaman-user/user/dashboard.jsp">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            Ketentuan
+                        </a>
+                    </li>
+                </ul>
+                <li>
+                    <a style="display: block;" href="<%=request.getContextPath()%>/UserController?action=validasi-tiket&userId=<%=session.getAttribute(" id")%>
+                        ">
+                        <i class="fa fa-shield fa-lg"></i>Validasi Tiket
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <style>
+        .form-group {
+            margin: 0 0 0 0 !important;
+        }
+    </style>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="judul">
+                        Data Pemesan <i style="padding-left: 15px; padding-top: 20px; font-size: 40px;" class="fa fa-book" aria-hidden="true"></i>
+                    </h1>
+
+                    <br>
+                </div>
+                <div class="col-lg-12">
+                    <form class="" method="post" action="<%=request.getContextPath()%>/UserController?action=data-pembeli&userId=<%=session.getAttribute(" id")%>
+                        ">
+                        <fieldset>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Data Peserta Bootcamp </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <legend style="padding-top: 12px;" class="control-label">Profil Peserta *</legend>
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="form-group ">
+                                            <label class="control-label" for="">Nama </label>
+                                            <div class="form-input">
+                                                <input class="form-control" type="text" name="nama" value="<c:out value=" ${dataPembeli.nm_pembeli}" />">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-1">
+                                        <div class="form-group ">
+                                            <label class="control-label" for="">Email</label>
+                                            <div class="form-input">
+                                                <input class="form-control" type="text" name="email" value="${dataPembeli.email_pembeli}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group ">
+                                            <label class="control-label" for="">No Handphone</label>
+                                            <div class="form-input">
+                                                <input class="form-control" type="text" name="hp" value="${dataPembeli.hp_pembeli}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-1">
+                                        <div class="form-group has-warning ">
+                                            <label class="control-label" for="hargaTiket">Harga Tiket</label>
+                                            <div class="form-input">
+                                                <input class="form-control" id="hargaTiket" type="text" name="jk_utama" value="${dataPembeli.harga_tiket}" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group ">
+                                            <label class="control-label" for="">Pilihan Bank</label>
+                                            <div class="form-input">
+                                                <input readonly class="form-control" type="text" name="hpUtama" value="${dataPembeli.pilihan_bank}">
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-offset-10">
+                                <button type="submit" class="btn btn-raised btn-info">Simpan Data</button>
+                                <!-- Orang Ke 3 -->
+                            </div>
+                            <br>
+                            <br>
+                            <br>
+
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+</body>
+
+@Html.Partial("_Footer")
+
+</html>

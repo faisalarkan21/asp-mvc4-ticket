@@ -1,0 +1,269 @@
+﻿<body>
+
+    <div class="container ">
+        <div class="daftar col-md-8 col-md-offset-2 well ">
+            <div class="form-group" style="margin-bottom: -15px;">
+                <h1 class="judul col-md-9 col-md-offset-1"> Pembelian Tiket Pesawat</h1>
+                <i style="margin-top: 6px; margin-right:-50px;" class="fa  fa-grav fa-5x" aria-hidden="true"></i>
+                <hr>
+
+            </div>
+
+            <div class="col-md-9 col-md-offset-1" style="margin-bottom: -15px;">
+
+                <br>
+                <label style="margin-left: 16px;" class="control-label ">
+                    Data Pribadi
+                </label>
+                <hr class="garisbagian">
+
+            </div>
+            <div class="col-md-12 col-md-offset-1">
+                <form class="daftar form-horizontal text-center" action="UserController?action=daftar" method="post">
+@using (Html.BeginForm("daftar", "Home", FormMethod.Post, new { @class = "daftar form - horizontal text - center" }))
+{
+                    <div class="col-md-4">
+                        <div id="ketikEmail" class="form-group {{error}}">
+
+                            <div class="input-group ">
+
+                                <span class="input-group-addon"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></span>
+                                <input class="form-control " name="nama" placeholder="Nama Anda" type="name" value="">
+                               @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1">
+                        <div id="ketikPass" class="form-group  {{error}}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></span>
+                                <input class="form-control" name="email" placeholder="Email Anda" type="email" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div id="ketikEmail" class="form-group {{error}}">
+                            <div class="input-group ">
+                                <span class="input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></span>
+                                <input class="form-control " name="password" placeholder="Password" type="password" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1">
+                        <div id="ketikEmail" class="form-group {{error}}">
+                            <div class="input-group ">
+                                <span class="input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></span>
+                                <input class="form-control " placeholder="Konfirmasi Password" type="password" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div id="ketikEmail" class="form-group {{error}}">
+                            <div class="input-group ">
+                                <span class="input-group-addon"><i class="fa fa-phone-square fa-lg" aria-hidden="true"></i></span>
+                                <input class="form-control " name="hp" placeholder="No Handphone" type="text" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1">
+                        <div id="ketikPass" class="form-group  {{error}}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                                <select name="gd" id="gender" class="form-control">
+                                    <option hidden>Pilih gender</option>
+                                    <option>Pria</option>
+                                    <option>Wanita</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <br>
+                        <label class="control-label">
+                            Bandara Keberangkatan
+                        </label>
+                        <hr class="garisbagian">
+
+                    </div>
+                    <div class="col-md-12" style="margin-top: -30px;">
+
+                        <div class="col-md-12 ">
+
+
+
+
+                            <div id="ketikEmail" class="form-group {{error}} col-md-6 ">
+                                <div class="input-group col-md-10">
+                                    <label for="metode " class="control-label">
+                                        Pilih Bandara Keberangkatan
+                                    </label>
+                                    <select name="berangkatBandara" id="berangkat" class="form-control" onchange="keberangkatan(this.value);">
+                                        <%while(rsBerangkat.next()){ %>
+                                        <option value="<%=rsBerangkat.getString(1)%>"><%=rsBerangkat.getString(2)%></option>
+                                        <%}%>
+
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                            <div id="ketikEmail" class="form-group {{error}} col-md-6 ">
+                                <div class="input-group col-md-8">
+                                    <label for="harga " class="control-label">
+                                        Biaya Keberangkatan
+                                    </label>
+                                    <input class="form-control " name="harga" id="biayaBerangkat" placeholder="Biaya Keberangkatan " type="text" value="" disabled>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    <div class="col-md-9">
+
+                        <br>
+                        <label class="control-label">
+                            Bandara Tujuan
+                        </label>
+                        <hr class="garisbagian">
+
+                    </div>
+                    <div class="col-md-12" style="margin-top: -30px;">
+
+                        <div class="col-md-12 ">
+
+
+
+
+                            <div id="ketikEmail" class="form-group {{error}} col-md-6 ">
+                                <div class="input-group col-md-10">
+                                    <label for="metode " class="control-label">
+                                        Pilih  Bandara Tujuan
+                                    </label>
+                                    <select name="tujuanBandara" id="metode" class="form-control" onchange="tujuan(this.value);">
+                                        <%while(rsTujuan.next()){ %>
+                                        <option value="<%=rsTujuan.getString(1)%>"><%=rsTujuan.getString(2)%></option>
+
+                                        <%}%>
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                            <div id="ketikEmail" class="form-group {{error}} col-md-6 ">
+                                <div class="input-group col-md-8">
+                                    <label for="harga " class="control-label">
+                                        Biaya Tujuan
+                                    </label>
+                                    <input class="form-control " name="harga" id="biayaTujuan" placeholder="Biaya Tujuan" type="text" value="" disabled>
+
+                                </div>
+                            </div>
+
+
+
+                            <div id="ketikEmail" class="form-group {{error}} col-md-6">
+                                <div class="input-group col-md-8">
+                                    <label for="harga " class="control-label">
+                                        Total Harga
+                                    </label>
+                                    <input class="form-control " name="totalHargaTiket" id="totalHarga" placeholder="Total Harga" type="text" value="" readonly>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+                    <div class="col-md-9">
+
+                        <br>
+                        <label class="control-label">
+                            Pilih Metode Pembayaran
+                        </label>
+                        <hr class="garisbagian">
+
+                    </div>
+                    <div class="col-md-12" style="margin-top: -30px;">
+
+                        <div class="col-md-12 ">
+
+
+
+
+                            <div id="ketikEmail" class="form-group {{error}} col-md-6">
+                                <div class="input-group col-md-9">
+                                    <label for="metode " class="control-label">
+                                        Pilih Metode Pembayaran
+                                    </label>
+                                    <select name="bank" id="metode" class="form-control">
+                                        <option hidden>Pilih Bank</option>
+                                        <option>BCA NO. 98080986643 - Faisal Arkan</option>
+                                        <option>BRI NO. 78787878741 - Sativa Ken</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+                        <div style="padding-bottom: 30px; padding-left: 20px;" class="col-md-10 col-md-offset-2">
+
+                            <br>
+                            <br>
+                            <a class=" btn btn-raised btn-info btn-md" href="/login"> Kembali  </a>
+                            <button id="login" style="margin-left: 10px;" class="btn btn-raised btn-primary " type="submit">  Submit</button>
+                        </div>
+
+
+                    </div>
+
+}
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+@Html.Partial("_Footer")
