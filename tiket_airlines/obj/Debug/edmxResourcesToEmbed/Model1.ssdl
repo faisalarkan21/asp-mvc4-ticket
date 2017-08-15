@@ -13,7 +13,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="prefix" Type="varchar" MaxLength="2" Nullable="false" StoreGeneratedPattern="Computed" />
     <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="harga_tiket" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_transfer" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -34,7 +34,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="prefix" Type="varchar" MaxLength="3" Nullable="false" StoreGeneratedPattern="Computed" />
     <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nm_pembeli" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="email_pembeli" Type="varchar" MaxLength="50" Nullable="false" />
@@ -57,7 +57,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="varchar" MaxLength="3" />
+    <Property Name="prefix" Type="varchar" MaxLength="3" StoreGeneratedPattern="Computed" />
     <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tgl_order" Type="varchar" MaxLength="300" Nullable="false" />
   </EntityType>

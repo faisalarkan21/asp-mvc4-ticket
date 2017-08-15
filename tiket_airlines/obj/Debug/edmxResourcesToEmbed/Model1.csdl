@@ -13,7 +13,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prefix" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="harga_tiket" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="total_transfer" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
@@ -38,7 +38,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nm_pembeli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="email_pembeli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -61,7 +61,7 @@
     <Key>
       <PropertyRef Name="id_pembeli" />
     </Key>
-    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
     <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="tgl_order" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
