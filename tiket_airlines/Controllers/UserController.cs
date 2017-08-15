@@ -80,5 +80,15 @@ namespace tiket_airlines.Controllers
 
         }
 
+
+        public ActionResult log_out()
+        {
+
+            Session.Remove("user");
+            Session.Remove("email");
+            Session.Remove("id");            
+            return RedirectToAction("index", "Home");
+        }
+
     }
 }
