@@ -29,7 +29,7 @@
                             Login Sebagai : @Session["user"].ToString() <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/keluar">Log Out  <i class="material-icons">keyboard_arrow_right</i> </a></li>
+                            <li><a href="@Url.Action("log_out", "user")">Log Out  <i class="fa fa-sign-out"></i> </a></li>
                             <li class="divider"></li>
                             <li><a href="#">Bantuan  </a> </li>
                         </ul>
