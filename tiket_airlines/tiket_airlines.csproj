@@ -305,6 +305,7 @@
     <Content Include="Views\Admin\user_detail.cshtml" />
     <Content Include="Views\Admin\kotak_validasi.cshtml" />
     <Content Include="Views\Home\daftar.cshtml" />
+    <Content Include="Views\Shared\_HeaderUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
