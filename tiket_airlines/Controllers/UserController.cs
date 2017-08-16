@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using tiket_airlines.Helper;
 using tiket_airlines.Models;
 using tiket_airlines.Security;
 
@@ -27,6 +28,22 @@ namespace tiket_airlines.Controllers
             //Gabungan. student = db.Students.Find(id);
             gabungan.tblPembeli = db.pembeli.Find(idUser);
             gabungan.tblDetailTiket = db.detil_pesan_tiket.Find(idUser);
+
+
+            int pajak_berangkatId = gabungan.tblDetailTiket.bandara_berangkat;
+            int pajak_tujuanId = gabungan.tblDetailTiket.bandara_tujuan;
+
+            var hargaBerangkat = db.pajak_bandara.Find(pajak_berangkatId);
+            var hargaTujuan = db.pajak_bandara.Find(pajak_tujuanId);
+
+            gabungan.rp_bandara_berangkat = ConvertCurrency.ToRupiah(hargaBerangkat.pajak);
+            gabungan.rp_bandara_tujuan = ConvertCurrency.ToRupiah(hargaTujuan.pajak);
+
+
+
+            gabungan.nm_bandara_berangkat = hargaBerangkat.nm_bandara;
+            gabungan.nm_bandara_tujuan = hargaBerangkat.nm_bandara;
+
 
             return View(gabungan);
         }
@@ -59,8 +76,23 @@ namespace tiket_airlines.Controllers
             int idUser = (int)Session["id"];
             //Gabungan. student = db.Students.Find(id);
             gabungan.tblPembeli = db.pembeli.Find(idUser);
-            gabungan.tblDetailTiket = db.detil_pesan_tiket.Find(idUser);
+            gabungan.tblDetailTiket = db.detil_pesan_tiket.Find(idUser);          
             gabungan.tblValidasi = db.pembeli_validasi.Find(idUser);
+
+        
+            gabungan.rp_harga_tiket = ConvertCurrency.ToRupiah(gabungan.tblDetailTiket.harga_tiket);
+
+            int pajak_berangkatId = gabungan.tblDetailTiket.bandara_berangkat;
+            int pajak_tujuanId = gabungan.tblDetailTiket.bandara_tujuan;
+
+            var hargaBerangkat = db.pajak_bandara.Find(pajak_berangkatId);
+            var hargaTujuan = db.pajak_bandara.Find(pajak_tujuanId);
+
+            gabungan.rp_bandara_berangkat = ConvertCurrency.ToRupiah(hargaBerangkat.pajak);
+            gabungan.rp_bandara_tujuan = ConvertCurrency.ToRupiah(hargaTujuan.pajak);
+
+            gabungan.nm_bandara_berangkat = hargaBerangkat.nm_bandara;
+            gabungan.nm_bandara_tujuan = hargaBerangkat.nm_bandara;
 
             return View(gabungan);
 

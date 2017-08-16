@@ -32,7 +32,7 @@
                                         <label class="control-label" for="">Nama </label>
                                         <div class="form-input">
 
-                                            @Html.TextBoxFor(u => u.tblPembeli.nm_pembeli, new { @class = "form-control", @placeholder = "Nama", @type = "name" })
+                                            @Html.TextBoxFor(u => u.tblPembeli.nm_pembeli, new { @readonly = "readonly", @class = "form-control", @placeholder = "Nama", @type = "name" })
 
 
                                         </div>
@@ -43,7 +43,7 @@
                                         <label class="control-label" for="">Email</label>
                                         <div class="form-input">
 
-                                            @Html.TextBoxFor(u => u.tblPembeli.email_pembeli, new { @class = "form-control", @placeholder = "Masukan Email", @type = "email" })
+                                            @Html.TextBoxFor(u => u.tblPembeli.email_pembeli, new { @readonly = "readonly", @class = "form-control", @placeholder = "Masukan Email", @type = "email" })
 
 
                                         </div>
@@ -53,28 +53,76 @@
                                     <div class="form-group has-warning ">
                                         <label class="control-label" for="inputWarning">No Handphone</label>
                                         <div class="form-input">
-                                            @Html.TextBoxFor(u => u.tblPembeli.hp_pembeli, new { @class = "form-control", @placeholder = "No Handphone", @type = "text" })
+                                            @Html.TextBoxFor(u => u.tblPembeli.hp_pembeli, new { @readonly = "readonly", @class = "form-control", @placeholder = "No Handphone", @type = "text" })
 
 
                                         </div>
                                     </div>
                                 </div>
+
 
                                 <div class="col-md-4 col-md-offset-1">
                                     <div class="form-group has-warning ">
                                         <label class="control-label" for="inputWarning">Harga Tiket</label>
                                         <div class="form-input">
-                                            @Html.TextBoxFor(u => u.tblDetailTiket.harga_tiket, new { @class = "form-control", @placeholder = "Harga Tiket", @type = "text" })
+                                            @Html.TextBoxFor(u => u.rp_harga_tiket, new { @readonly = "readonly", @class = "form-control", @placeholder = "Harga Tiket", @type = "text" })
 
 
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="col-md-4">
+                                    <div class="form-group ">
+                                        <label class="control-label" for="">Nama Bandara Berangkat</label>
+                                        <div class="form-input">
+
+                                            @Html.TextBoxFor(u => u.nm_bandara_berangkat, new { @readonly = "readonly", @class = "form-control", @placeholder = "Bandara Berangkat", @type = "text" })
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  col-md-offset-1">
+                                    <div class="form-group has-warning ">
+                                        <label class="control-label" for="inputWarning">Nama Bandara Tujuan</label>
+                                        <div class="form-input">
+                                            @Html.TextBoxFor(u => u.nm_bandara_tujuan, new { @readonly = "readonly", @class = "form-control", @placeholder = "Bandara Tujuan", @type = "text" })
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group ">
+                                        <label class="control-label" for="">Pajak Bandara Berangkat</label>
+                                        <div class="form-input">
+
+                                            @Html.TextBoxFor(u => u.rp_bandara_berangkat, new { @readonly = "readonly", @class = "form-control", @placeholder = "Bandara Berangkat", @type = "text" })
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  col-md-offset-1">
+                                    <div class="form-group has-warning ">
+                                        <label class="control-label" for="inputWarning">Pajak Bandara Tujuan</label>
+                                        <div class="form-input">
+                                            @Html.TextBoxFor(u => u.rp_bandara_tujuan, new { @readonly = "readonly", @class = "form-control", @placeholder = "Bandara Tujuan", @type = "text" })
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="col-md-5 ">
                                     <div class="form-group ">
                                         <label class="control-label" for="bank">Pilihan Bank </label>
                                         <div class="form-input">
-                                            @Html.TextBoxFor(u => u.tblDetailTiket.pilihan_bank, new { @class = "form-control", @placeholder = "Harga Tiket", @type = "text" })
+                                            @Html.TextBoxFor(u => u.tblDetailTiket.pilihan_bank, new { @readonly = "readonly", @class = "form-control", @placeholder = "Harga Tiket", @type = "text" })
 
                                         </div>
                                     </div>
