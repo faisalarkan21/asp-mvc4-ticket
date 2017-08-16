@@ -1,5 +1,6 @@
 ﻿
 @Html.Partial("_HeaderAdmin")
+@model tiket_airlines.Models.Statistik
 
 <div style="padding-top: 55px;" class="container">
     <div class="col-md-11 well  col-md-offset-2">
@@ -32,7 +33,7 @@
 
                         <li class="panah" style="list-style-type: none;">
                             Tiket
-                            Terjual <code class="" style="margin-left: 35px;">${dataStatistik.userSemua}</code>
+                            Terjual <code class="" style="margin-left: 35px;">@Html.DisplayFor(u => u.total_user)</code>
                             Tiket
                         </li>
 
@@ -49,12 +50,12 @@
 
                         <li class="panah" style="list-style-type: none;">
                             Jumlah Tiket
-                            Lunas <code class="" style="margin-left: 35px;">${dataStatistik.userLunas}</code>
+                            Lunas <code class="" style="margin-left: 35px;">@Html.DisplayFor(u => u.user_lunas)</code>
                             Tiket
                         </li>
                         <li class="panah" style="list-style-type: none;">
                             Jumlah Belum
-                            Lunas <code class="" style="margin-left: 23px;">${dataStatistik.userBelumLunas}</code>
+                            Lunas <code class="" style="margin-left: 23px;">@Html.DisplayFor(u => u.user_belum_lunas)</code>
                             Tiket
                         </li>
                     </ul>
@@ -72,15 +73,15 @@
                     <ul class="tulisTiket" style="padding-left: 15px;">
                         <li class="panah" style="list-style-type: none;">
                             Total
-                            Estimasi Pendapatan <code class="" style="margin-left: 50px;"><%= request.getAttribute("uangEstimasi") %></code>
+                            Estimasi Pendapatan <code class="" style="margin-left: 50px;">@Html.DisplayFor(u => u.uang_estimasi)</code>
                         </li>
                         <li class="panah" style="list-style-type: none;">
                             Jumlah Uang
-                            Diterima <code class="" style="margin-left: 80px;"><%= request.getAttribute("uangDiterima") %></code>
+                            Diterima <code class="" style="margin-left: 80px;">@Html.DisplayFor(u => u.uang_diterima)</code>
                         </li>
                         <li class="panah" style="list-style-type: none;">
                             Total Sisa
-                            Uang Belum Dibayar <code class="" style="margin-left: 22px;"><%= request.getAttribute("uangSisa") %></code>
+                            Uang Belum Dibayar <code class="" style="margin-left: 22px;">@Html.DisplayFor(u => u.selisiPendapatan)</code>
                         </li>
                     </ul>
                 </div>
@@ -95,7 +96,7 @@
                     <ul class="tulisTiket" style="padding-left: 15px;">
                         <li class="panah" style="list-style-type: none;">
                             Kotak
-                            Validasi Tiket <code class="" style="margin-left: 32px;">${dataStatistik.userValidasi}</code>
+                            Validasi Tiket <code class="" style="margin-left: 32px;">@Html.DisplayFor(u => u.user_validasi)</code>
                             Tiket pesan
                         </li>
 
