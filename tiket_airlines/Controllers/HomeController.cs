@@ -60,6 +60,7 @@ namespace tiket_airlines.Controllers
             {
                 ViewBag.htmlError = "has-error";
                 ViewBag.errorMessage = "Username atau password anda salah.";
+                return View();
             }
 
             if (postPembeli.email_pembeli == pb.email_pembeli && postPembeli.password == pb.password)
@@ -88,6 +89,7 @@ namespace tiket_airlines.Controllers
             {
                 ViewBag.htmlError = "has-error";
                 ViewBag.errorMessage = "Username atau password anda salah.";
+                return View();
             }
 
             if (postAdmin.email_admin == ad.email_admin && postAdmin.pass_admin == ad.pass_admin)
