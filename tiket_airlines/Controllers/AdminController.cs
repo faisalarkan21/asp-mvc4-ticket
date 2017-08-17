@@ -43,30 +43,54 @@ namespace tiket_airlines.Controllers
 
         public ActionResult kotak_validasi()
         {
-            return View();
+            var joinData = from p in db.pembeli
+                           from d in db.detil_pesan_tiket
+                           where p.id_pembeli == d.id_pembeli
+                           from v in db.pembeli_validasi
+                           where d.id_pembeli == v.id_pembeli
+                           where v.pilihan_bank != null
+                           select new Gabungan { tblPembeli = p, tblDetailTiket = d, tblValidasi = v };
+
+            return View(joinData);
         }
 
         public ActionResult semua_pembeli()
         {
-            GabunganSemuaPembeli gabunganSemua = new GabunganSemuaPembeli();
+            var joinData = from p in db.pembeli
+                           from d in db.detil_pesan_tiket
+                           where p.id_pembeli == d.id_pembeli
+                           from v in db.pembeli_validasi
+                           where d.id_pembeli == v.id_pembeli
+                           select new Gabungan { tblPembeli = p, tblDetailTiket = d, tblValidasi = v };
 
 
-            gabunganSemua.tblPembeli = db.pembeli.ToList();
-            gabunganSemua.tblDetailTiket = db.detil_pesan_tiket.ToList();
-            gabunganSemua.tblValidasi = db.pembeli_validasi.ToList();
-                
-
-
-            return View(gabunganSemua);
+            return View(joinData);
         }
+
         public ActionResult pembeli_lunas()
         {
-            return View();
+            var joinData = from p in db.pembeli
+                           from d in db.detil_pesan_tiket
+                           where p.id_pembeli == d.id_pembeli
+                           from v in db.pembeli_validasi
+                           where d.id_pembeli == v.id_pembeli
+                           where d.total_transfer != 0
+                           select new Gabungan { tblPembeli = p, tblDetailTiket = d, tblValidasi = v };
+
+            return View(joinData);
         }
 
         public ActionResult pembeli_belum_lunas()
         {
-            return View();
+            var joinData = from p in db.pembeli
+                           from d in db.detil_pesan_tiket
+                           where p.id_pembeli == d.id_pembeli
+                           from v in db.pembeli_validasi
+                           where d.id_pembeli == v.id_pembeli
+                           where d.total_transfer == 0
+                           select new Gabungan { tblPembeli = p, tblDetailTiket = d, tblValidasi = v };
+
+            return View(joinData);
         }
         public ActionResult user_detail()
         {

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace tiket_airlines.Models
 {
-    public class GabunganSemuaPembeli
+    public class GabunganSemuaList
     {
 
         public List <pembeli> tblPembeli { get; set; }
