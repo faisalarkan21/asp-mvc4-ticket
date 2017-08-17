@@ -33,7 +33,7 @@
 
                         <li class="panah" style="list-style-type: none;">
                             Tiket
-                            Terjual <code class="" style="margin-left: 35px;">@Html.DisplayFor(u => u.total_user)</code>
+                            Terjual <code class="" style="margin-left: 10px;">@Html.DisplayFor(u => u.total_user)</code>
                             Tiket
                         </li>
 
@@ -96,7 +96,7 @@
                     <ul class="tulisTiket" style="padding-left: 15px;">
                         <li class="panah" style="list-style-type: none;">
                             Kotak
-                            Validasi Tiket <code class="" style="margin-left: 32px;">@Html.DisplayFor(u => u.user_validasi)</code>
+                            Validasi Tiket <code class="" style="margin-left: 10px;">@Html.DisplayFor(u => u.user_validasi)</code>
                             Tiket pesan
                         </li>
 
@@ -109,8 +109,8 @@
         <div style="padding-right: 30px; float: right;" class="col-md-6    ">
 
             <div class="panel-body">
-                <a href="<%=request.getContextPath()%>/AdminController?action=logout" style="margin-left: 10px;"
-                   class="btn btn-primary btn-raised">Log out</a> <a href="<%=request.getContextPath()%>/AdminController?action=statistik" class="btn btn-primary btn-raised">
+                <a href="@Url.Action("log_out", "admin")" style="margin-left: 10px;"
+                   class="btn btn-primary btn-raised">Log out</a> <a href=""@Url.Action("dashboard_admin", "admin")" class="btn btn-primary btn-raised">
                     Segarkan
                     Statistik
                 </a>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,13 +31,13 @@ namespace tiket_airlines.Controllers
             statistik.user_belum_lunas = db.detil_pesan_tiket.Where(u => u.total_transfer == 0).Count();
             statistik.uang_estimasi = ConvertCurrency.ToRupiah(db.detil_pesan_tiket.Select(u => u.harga_tiket).Sum());
             statistik.uang_diterima = ConvertCurrency.ToRupiah(db.detil_pesan_tiket.Select(u => u.total_transfer).Sum());
-            
+
             decimal estimasi = db.detil_pesan_tiket.Select(u => u.harga_tiket).Sum();
             decimal uangDiterima = db.detil_pesan_tiket.Select(u => u.total_transfer).Sum();
 
             statistik.selisiPendapatan = ConvertCurrency.ToRupiah(estimasi - uangDiterima);
             statistik.user_validasi = db.pembeli_validasi.Where(u => u.uang_transfer_validasi != null).Count();
-            
+
             return View(statistik);
         }
 
@@ -46,7 +48,16 @@ namespace tiket_airlines.Controllers
 
         public ActionResult semua_pembeli()
         {
-            return View();
+            GabunganSemuaPembeli gabunganSemua = new GabunganSemuaPembeli();
+
+
+            gabunganSemua.tblPembeli = db.pembeli.ToList();
+            gabunganSemua.tblDetailTiket = db.detil_pesan_tiket.ToList();
+            gabunganSemua.tblValidasi = db.pembeli_validasi.ToList();
+                
+
+
+            return View(gabunganSemua);
         }
         public ActionResult pembeli_lunas()
         {
