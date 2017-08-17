@@ -15,7 +15,8 @@ namespace tiket_airlines.Models
         public string nm_bandara_berangkat { get; set; }
         public string nm_bandara_tujuan { get; set; }
         public string rp_harga_tiket { get; set; }
-        
+        public string rp_total_transfer { get; set; }
 
-}
+
+    }
 }

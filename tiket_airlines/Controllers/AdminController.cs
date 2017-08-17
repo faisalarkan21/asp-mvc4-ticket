@@ -92,9 +92,33 @@ namespace tiket_airlines.Controllers
 
             return View(joinData);
         }
-        public ActionResult user_detail()
+
+        public ActionResult user_detail(int id)
         {
-            return View();
+            Gabungan gabungan = new Gabungan();
+            
+         
+            gabungan.tblPembeli = db.pembeli.Find(id);
+            gabungan.tblDetailTiket = db.detil_pesan_tiket.Find(id);
+            gabungan.tblValidasi = db.pembeli_validasi.Find(id);
+
+            int pajak_berangkatId = gabungan.tblDetailTiket.bandara_berangkat;
+            int pajak_tujuanId = gabungan.tblDetailTiket.bandara_tujuan;
+
+            var hargaBerangkat = db.pajak_bandara.Find(pajak_berangkatId);
+            var hargaTujuan = db.pajak_bandara.Find(pajak_tujuanId);
+
+            gabungan.rp_bandara_berangkat = ConvertCurrency.ToRupiah(hargaBerangkat.pajak);
+            gabungan.rp_bandara_tujuan = ConvertCurrency.ToRupiah(hargaTujuan.pajak);
+
+            gabungan.rp_harga_tiket = ConvertCurrency.ToRupiah(gabungan.tblDetailTiket.harga_tiket);
+            gabungan.rp_total_transfer = ConvertCurrency.ToRupiah(gabungan.tblDetailTiket.total_transfer);
+
+            gabungan.nm_bandara_berangkat = hargaBerangkat.nm_bandara;
+            gabungan.nm_bandara_tujuan = hargaBerangkat.nm_bandara;
+
+
+            return View(gabungan);
         }
 
         public ActionResult log_out()
