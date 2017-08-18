@@ -96,8 +96,8 @@ namespace tiket_airlines.Controllers
         public ActionResult user_detail(int id)
         {
             Gabungan gabungan = new Gabungan();
-            
-         
+
+
             gabungan.tblPembeli = db.pembeli.Find(id);
             gabungan.tblDetailTiket = db.detil_pesan_tiket.Find(id);
             gabungan.tblValidasi = db.pembeli_validasi.Find(id);
@@ -115,11 +115,43 @@ namespace tiket_airlines.Controllers
             gabungan.rp_total_transfer = ConvertCurrency.ToRupiah(gabungan.tblDetailTiket.total_transfer);
 
             gabungan.nm_bandara_berangkat = hargaBerangkat.nm_bandara;
-            gabungan.nm_bandara_tujuan = hargaBerangkat.nm_bandara;
+            gabungan.nm_bandara_tujuan = hargaTujuan.nm_bandara;
 
 
             return View(gabungan);
         }
+
+        [HttpPost]
+        public ActionResult user_detail(int id, Gabungan gabungan)
+        {
+
+
+
+
+
+            decimal UnformatRpTotalTf = ConvertCurrency.ToAngka(gabungan.rp_total_transfer);
+            decimal TotalTf = gabungan.tblDetailTiket.total_transfer;
+         
+            if (UnformatRpTotalTf == TotalTf)
+            {
+                var userDetail = db.detil_pesan_tiket.FirstOrDefault(u => u.id_pembeli == id);
+                userDetail.total_transfer = 0;
+                // it's means, number 1 has been paid, so 0 is otherwise
+                userDetail.status = 0;
+            }
+            else
+            {
+                var userDetail = db.detil_pesan_tiket.FirstOrDefault(u => u.id_pembeli == id);
+                userDetail.total_transfer = UnformatRpTotalTf;
+                // it's means, number 1 has been paid, so 0 is otherwise
+                userDetail.status = 1;
+            }
+
+            db.SaveChanges();
+
+            return RedirectToAction("semua_pembeli", "Admin");
+        }
+
 
         public ActionResult log_out()
         {

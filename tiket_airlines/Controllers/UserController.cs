@@ -42,7 +42,7 @@ namespace tiket_airlines.Controllers
             gabungan.rp_harga_tiket = ConvertCurrency.ToRupiah(gabungan.tblDetailTiket.harga_tiket);
 
             gabungan.nm_bandara_berangkat = hargaBerangkat.nm_bandara;
-            gabungan.nm_bandara_tujuan = hargaBerangkat.nm_bandara;
+            gabungan.nm_bandara_tujuan = hargaTujuan.nm_bandara;
 
 
             return View(gabungan);

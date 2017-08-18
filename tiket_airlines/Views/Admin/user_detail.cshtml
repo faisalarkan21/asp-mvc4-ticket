@@ -126,7 +126,7 @@
                                                     <label for="nama " class="control-label">
                                                         Bandara Keberangkatan
                                                     </label>
-                                                    @Html.TextBoxFor(u => u.nm_bandara_berangkat, new { @readonly = "readonly", @class = "form-control", @placeholder = "Hp", @type = "text" })
+                                                    @Html.TextBoxFor(u => u.nm_bandara_berangkat, new { @readonly = "readonly", @class = "form-control", @placeholder = "Berangkat", @type = "text" })
 
 
                                                 </div>
@@ -142,7 +142,7 @@
                                                     <label for="nama " class="control-label">
                                                         Bandara Tujuan
                                                     </label>
-                                                    @Html.TextBoxFor(u => u.nm_bandara_tujuan, new { @readonly = "readonly", @class = "form-control", @placeholder = "Hp", @type = "text" })
+                                                    @Html.TextBoxFor(u => u.nm_bandara_tujuan, new { @readonly = "readonly", @class = "form-control", @placeholder = "Tujuan", @type = "text" })
 
 
                                                 </div>
@@ -277,7 +277,7 @@
                                                     Uang
                                                     Transfer
                                                 </label>
-                                                @Html.TextBoxFor(u => u.rp_total_transfer, new { @readonly = "readonly", @class = "form-control", @placeholder = "Bandara Tujuan", @type = "text" })
+                                                @Html.TextBoxFor(u => u.rp_total_transfer, new { @id = "uangtf", @readonly = "readonly", @class = "form-control", @placeholder = "Bandara Tujuan", @type = "text" })
 
 
 
@@ -406,21 +406,28 @@
 <script>
     $(document).ready(function () {
 
-        // here me sekarang bal
+
 
         $("#lunasCheck").change(function () {
             if (this.checked) {
                 console.log("Dicekliks");
                 $("#labelCheck").html("Lunas");
-                $("#uangtf").val("");
+                $("#uangtf").val("@Html.DisplayTextFor(u=>u.rp_harga_tiket)");
             }
             else {
                 console.log("Kaga diceklis");
                 $("#labelCheck").html(
                     "Belum Lunas");
-                $("#uangtf").val('0');
+                $("#uangtf").val(convertToRupiah(0));
             }
         });
+
+        function convertToRupiah(angka) {
+            var rupiah = '';
+            var angkarev = angka.toString().split('').reverse().join('');
+            for (var i = 0; i < angkarev.length; i++) if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
+            return 'Rp. ' + rupiah.split('', rupiah.length - 1).reverse().join('') + ',00';
+        }
 
         $("#btnHapus")
         .click(
@@ -428,8 +435,8 @@
                 var request = $
                     .ajax({
                         url: "http://127.0.0.1:8080/<%=request.getContextPath()%>/AdminController?action=deleteDetail&userId=${dataPembeli.idUser}",
-                        type : "POST",
-                        success : function(
+                        type: "POST",
+                        success: function (
                                 data,
                                 textStatus) {
                             window.location.href = "AdminController?action=getAllPembeli";
