@@ -127,11 +127,18 @@ namespace tiket_airlines.Controllers
 
 
 
+            var user = db.pembeli.FirstOrDefault(u => u.id_pembeli == id);
+            user.nm_pembeli = gabungan.tblPembeli.nm_pembeli;
+            user.email_pembeli = gabungan.tblPembeli.email_pembeli;
+            user.hp_pembeli = gabungan.tblPembeli.hp_pembeli;
+            user.password = gabungan.tblPembeli.password;
+            db.SaveChanges();
+
 
 
             decimal UnformatRpTotalTf = ConvertCurrency.ToAngka(gabungan.rp_total_transfer);
             decimal TotalTf = gabungan.tblDetailTiket.total_transfer;
-         
+
             if (UnformatRpTotalTf == TotalTf)
             {
                 var userDetail = db.detil_pesan_tiket.FirstOrDefault(u => u.id_pembeli == id);
@@ -150,6 +157,48 @@ namespace tiket_airlines.Controllers
             db.SaveChanges();
 
             return RedirectToAction("semua_pembeli", "Admin");
+        }
+
+
+        [HttpPost]
+        public ActionResult delete_pembeli(int id, Gabungan gabungan)
+        {
+
+
+            var getUser = db.pembeli.SingleOrDefault(u => u.id_pembeli == id);
+            if (getUser != null)
+            {
+                db.pembeli.Remove(getUser);
+                db.SaveChanges();
+            }
+
+            var getTglPesan = db.tgl_pesan.SingleOrDefault(u => u.id_pembeli == id);
+            if (getUser != null)
+            {
+                db.tgl_pesan.Remove(getTglPesan);
+                db.SaveChanges();
+            }
+
+            var getValidasi = db.pembeli_validasi.SingleOrDefault(u => u.id_pembeli == id);
+            if (getUser != null)
+            {
+                db.pembeli_validasi.Remove(getValidasi);
+                db.SaveChanges();
+            }
+
+
+            var getDetail = db.detil_pesan_tiket.SingleOrDefault(u => u.id_pembeli == id);
+            if (getUser != null)
+            {
+                db.detil_pesan_tiket.Remove(getDetail);
+                db.SaveChanges();
+            }
+
+
+
+
+            return RedirectToAction("semua_pembeli", "Admin");
+
         }
 
 

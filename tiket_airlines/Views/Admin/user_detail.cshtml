@@ -321,19 +321,15 @@
                             </div>
 
 
-                            <div style="padding-bottom: 30px; padding-left: 20px;"
+                            <div style="padding-bottom: 30px; padding-top: 60px; padding-left: 20px;"
                                  class="col-md-10 col-md-offset-1">
-
-                                <br> <br> <a href="/admin/dashboard/send-email/{{userDetail.id_pembeli}}"
-                                             class="btn btn-primary btn-raised col-md-10">
-                                    Beritahukan
-                                    Lewat Email
-                                </a> <a style="color: white !important; background-color: #ef5350 !important;"
-                                        href="#" class="btn btn-raised col-md-10" data-toggle="modal"
-                                        data-target="#modal">Hapus Peserta</a>
+                                    
+                                <a style="color: white !important; background-color: #ef5350 !important;"
+                                   href="#" class="btn btn-raised col-md-10" data-toggle="modal"
+                                   data-target="#modal">Hapus Pembeli</a>
                                 <div style="padding-left: 25px;" class="col-md-offset-2">
                                     <a class=" btn btn-raised btn-info btn-md"
-                                       href="<%=request.getContextPath()%>/AdminController?action=getAllPembeli">
+                                       href="@Url.Action("semua_pembeli", "Admin")">
                                         Kembali
                                     </a>
                                     <button style="margin-left: 10px;"
@@ -357,7 +353,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <p>
-                                                Anda yakin akan menghapus ${dataPembeli.nm_pembeli}
+                                                Anda yakin akan menghapus @Html.DisplayTextFor(u=> u.tblPembeli.nm_pembeli)
                                                 dari daftar penerbangan ?
                                             </p>
                                         </div>
@@ -434,12 +430,12 @@
             function () {
                 var request = $
                     .ajax({
-                        url: "http://127.0.0.1:8080/<%=request.getContextPath()%>/AdminController?action=deleteDetail&userId=${dataPembeli.idUser}",
+                        url: "@Url.Action("delete_pembeli", "Admin", new { id = Model.tblPembeli.id_pembeli } )",
                         type: "POST",
                         success: function (
                                 data,
                                 textStatus) {
-                            window.location.href = "AdminController?action=getAllPembeli";
+                            window.location.href = "@Url.Action("semua_pembeli", "Admin")";
                         }
                     });
             })
