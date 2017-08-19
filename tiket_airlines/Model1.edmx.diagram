@@ -4,19 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6e29be7629c040ccb2ea74941265a47a" Name="Diagram1">
-        <EntityTypeShape EntityType="tiket_airlinesModel.admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="0ede1c7d17084ec282f46dc8d9dc718f" Name="Diagram1">
+        <EntityTypeShape EntityType="tiket_airlinesModel.admin" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="tiket_airlinesModel.detil_pesan_tiket" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="tiket_airlinesModel.pajak_bandara" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiket_airlinesModel.pembeli" Width="1.5" PointX="7.875" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiket_airlinesModel.pembeli_validasi" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiket_airlinesModel.tgl_pesan" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiket_airlinesModel.pembeli" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiket_airlinesModel.pembeli_validasi" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiket_airlinesModel.tgl_pesan" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiket_airlinesModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="tiket_airlinesModel.FK_detil_pesan_tiket_pajak_bandara" ManuallyRouted="false" />
         <AssociationConnector Association="tiket_airlinesModel.FK_detil_pesan_tiket_pajak_bandara1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="tiket_airlinesModel.sysdiagrams" Width="1.5" PointX="3.375" PointY="6.75" />
-        <AssociationConnector Association="tiket_airlinesModel.FK_detil_pesan_tiket_pembeli_validasi" />
-        <AssociationConnector Association="tiket_airlinesModel.FK_pembeli_detil_pesan_tiket" />
-        <AssociationConnector Association="tiket_airlinesModel.FK_pembeli_tgl_pesan" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -12,7 +12,7 @@ namespace tiket_airlines.Controllers
     [AuthorizationFilterUser]
     public class UserController : Controller
     {
-        tiket_airlinesEntitiesMVC db = new tiket_airlinesEntitiesMVC();
+        tiket_airlinesEntities db = new tiket_airlinesEntities();
 
         // GET: User
         public ActionResult dashboard()

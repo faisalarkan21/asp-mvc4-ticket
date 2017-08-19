@@ -10,7 +10,7 @@ namespace tiket_airlines.Controllers
 {
     public class HomeController : Controller
     {
-        static tiket_airlinesEntitiesMVC db = new tiket_airlinesEntitiesMVC();
+        static tiket_airlinesEntities db = new tiket_airlinesEntities();
 
         public ActionResult Index()
         {
@@ -85,6 +85,7 @@ namespace tiket_airlines.Controllers
             };
 
             db.pembeli.Add(dbPembeli);
+            db.SaveChanges();
 
             //table tgl Order
             tgl_pesan tgl_table = new tgl_pesan();
@@ -92,17 +93,19 @@ namespace tiket_airlines.Controllers
 
             var dbTglPesan = new tgl_pesan
             {
+                nm_pembeli = gabungan.tblPembeli.nm_pembeli,
                 tgl_order = tgl_table.tgl_order
             };
 
             db.tgl_pesan.Add(dbTglPesan);
+            db.SaveChanges();
 
 
-          
 
             // table Detail Pembeli
             var dbPembeliDetail = new detil_pesan_tiket
             {
+                nm_pembeli = gabungan.tblPembeli.nm_pembeli,
                 harga_tiket = ConvertCurrency.ToAngka(gabungan.rp_harga_tiket),
                 total_transfer = gabungan.tblDetailTiket.total_transfer,
                 pilihan_bank = gabungan.tblDetailTiket.pilihan_bank,
@@ -112,7 +115,7 @@ namespace tiket_airlines.Controllers
             };
 
             db.detil_pesan_tiket.Add(dbPembeliDetail);
-
+            db.SaveChanges();
 
 
             // table Validasi Pembeli

@@ -21,8 +21,5 @@ namespace tiket_airlines
         public string password { get; set; }
         public string hp_pembeli { get; set; }
         public string gd_pembeli { get; set; }
-    
-        public virtual detil_pesan_tiket detil_pesan_tiket { get; set; }
-        public virtual tgl_pesan tgl_pesan { get; set; }
     }
 }

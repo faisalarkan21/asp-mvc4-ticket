@@ -16,6 +16,7 @@ namespace tiket_airlines
     {
         public string prefix { get; set; }
         public int id_pembeli { get; set; }
+        public string nm_pembeli { get; set; }
         public decimal harga_tiket { get; set; }
         public decimal total_transfer { get; set; }
         public string pilihan_bank { get; set; }
@@ -25,7 +26,5 @@ namespace tiket_airlines
     
         public virtual pajak_bandara pajak_bandara { get; set; }
         public virtual pajak_bandara pajak_bandara1 { get; set; }
-        public virtual pembeli_validasi pembeli_validasi { get; set; }
-        public virtual pembeli pembeli { get; set; }
     }
 }

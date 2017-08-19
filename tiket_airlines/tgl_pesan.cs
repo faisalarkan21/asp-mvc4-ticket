@@ -16,8 +16,7 @@ namespace tiket_airlines
     {
         public string prefix { get; set; }
         public int id_pembeli { get; set; }
+        public string nm_pembeli { get; set; }
         public string tgl_order { get; set; }
-    
-        public virtual pembeli pembeli { get; set; }
     }
 }

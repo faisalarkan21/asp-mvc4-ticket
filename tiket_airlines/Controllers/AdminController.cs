@@ -18,7 +18,7 @@ namespace tiket_airlines.Controllers
     public class AdminController : Controller
     {
 
-        tiket_airlinesEntitiesMVC db = new tiket_airlinesEntitiesMVC();
+        tiket_airlinesEntities db = new tiket_airlinesEntities();
         // GET: Admin
 
         public ActionResult dashboard_admin()
@@ -170,31 +170,8 @@ namespace tiket_airlines.Controllers
             {
                 db.pembeli.Remove(getUser);
                 db.SaveChanges();
-            }
-
-            var getTglPesan = db.tgl_pesan.SingleOrDefault(u => u.id_pembeli == id);
-            if (getUser != null)
-            {
-                db.tgl_pesan.Remove(getTglPesan);
-                db.SaveChanges();
-            }
-
-            var getValidasi = db.pembeli_validasi.SingleOrDefault(u => u.id_pembeli == id);
-            if (getUser != null)
-            {
-                db.pembeli_validasi.Remove(getValidasi);
-                db.SaveChanges();
-            }
-
-
-            var getDetail = db.detil_pesan_tiket.SingleOrDefault(u => u.id_pembeli == id);
-            if (getUser != null)
-            {
-                db.detil_pesan_tiket.Remove(getDetail);
-                db.SaveChanges();
-            }
-
-
+            }                 
+            
 
 
             return RedirectToAction("semua_pembeli", "Admin");
