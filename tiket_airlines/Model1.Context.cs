@@ -31,5 +31,6 @@ namespace tiket_airlines
         public virtual DbSet<pembeli> pembeli { get; set; }
         public virtual DbSet<pembeli_validasi> pembeli_validasi { get; set; }
         public virtual DbSet<tgl_pesan> tgl_pesan { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

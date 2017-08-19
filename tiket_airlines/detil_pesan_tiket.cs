@@ -25,5 +25,7 @@ namespace tiket_airlines
     
         public virtual pajak_bandara pajak_bandara { get; set; }
         public virtual pajak_bandara pajak_bandara1 { get; set; }
+        public virtual pembeli_validasi pembeli_validasi { get; set; }
+        public virtual pembeli pembeli { get; set; }
     }
 }

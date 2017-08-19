@@ -20,5 +20,7 @@ namespace tiket_airlines
         public string hp_pembeli { get; set; }
         public Nullable<decimal> uang_transfer_validasi { get; set; }
         public string pilihan_bank { get; set; }
+    
+        public virtual detil_pesan_tiket detil_pesan_tiket { get; set; }
     }
 }

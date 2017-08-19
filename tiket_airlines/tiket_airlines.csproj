@@ -216,6 +216,9 @@
     <Compile Include="Security\AuthorizationFilterUser.cs" />
     <Compile Include="Security\AuthorizationFilterAdmin.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="tgl_pesan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

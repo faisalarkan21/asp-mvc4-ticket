@@ -1,4 +1,6 @@
-﻿<body>
+﻿
+@model tiket_airlines.Models.Gabungan
+<body>
 
     <div class="container ">
         <div class="daftar col-md-8 col-md-offset-2 well ">
@@ -19,17 +21,17 @@
 
             </div>
             <div class="col-md-12 col-md-offset-1">
-                <form class="daftar form-horizontal text-center" action="UserController?action=daftar" method="post">
-@using (Html.BeginForm("daftar", "Home", FormMethod.Post, new { @class = "daftar form - horizontal text - center" }))
-{
+
+                @using (Html.BeginForm("daftar", "Home", FormMethod.Post, new { @class = "daftar form - horizontal text - center" }))
+                {
                     <div class="col-md-4">
                         <div id="ketikEmail" class="form-group {{error}}">
 
                             <div class="input-group ">
 
                                 <span class="input-group-addon"><i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="nama" placeholder="Nama Anda" type="name" value="">
-                               @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+                                @Html.TextBoxFor(u => u.tblPembeli.nm_pembeli, new { @class = "form-control", @placeholder = "Nama", @type = "name" })
                             </div>
                         </div>
                     </div>
@@ -37,7 +39,7 @@
                         <div id="ketikPass" class="form-group  {{error}}">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control" name="email" placeholder="Email Anda" type="email" value="">
+                                @Html.TextBoxFor(u => u.tblPembeli.email_pembeli, new { @class = "form-control", @placeholder = "Email", @type = "email" })
                             </div>
                         </div>
                     </div>
@@ -45,7 +47,7 @@
                         <div id="ketikEmail" class="form-group {{error}}">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="password" placeholder="Password" type="password" value="">
+                                @Html.TextBoxFor(u => u.tblPembeli.password, new { @class = "form-control", @placeholder = "Password", @type = "text" })
                             </div>
                         </div>
                     </div>
@@ -53,7 +55,7 @@
                         <div id="ketikEmail" class="form-group {{error}}">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-eye-slash fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " placeholder="Konfirmasi Password" type="password" value="">
+                                @Html.TextBoxFor(u => u.tblPembeli.password, new { @class = "form-control", @placeholder = " Konfirmasi Password", @type = "text" })
                             </div>
                         </div>
                     </div>
@@ -61,7 +63,7 @@
                         <div id="ketikEmail" class="form-group {{error}}">
                             <div class="input-group ">
                                 <span class="input-group-addon"><i class="fa fa-phone-square fa-lg" aria-hidden="true"></i></span>
-                                <input class="form-control " name="hp" placeholder="No Handphone" type="text" value="">
+                                @Html.TextBoxFor(u => u.tblPembeli.hp_pembeli, new { @class = "form-control", @placeholder = "No Handphone", @type = "text" })
                             </div>
                         </div>
                     </div>
@@ -69,12 +71,12 @@
                         <div id="ketikPass" class="form-group  {{error}}">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
-                                <select name="gd" id="gender" class="form-control">
-                                    <option hidden>Pilih gender</option>
-                                    <option>Pria</option>
-                                    <option>Wanita</option>
 
-                                </select>
+
+                                @Html.DropDownListFor(x => x.tblPembeli.gd_pembeli, new SelectListItem[]{
+
+                new SelectListItem() {Text = "Laki - Laki", Value="Laki - Laki"},
+                new SelectListItem() {Text = "Perempuan", Value="Perempuan"}}, "Pilih Gender", new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
@@ -100,12 +102,8 @@
                                     <label for="metode " class="control-label">
                                         Pilih Bandara Keberangkatan
                                     </label>
-                                    <select name="berangkatBandara" id="berangkat" class="form-control" onchange="keberangkatan(this.value);">
-                                        <%while(rsBerangkat.next()){ %>
-                                        <option value="<%=rsBerangkat.getString(1)%>"><%=rsBerangkat.getString(2)%></option>
-                                        <%}%>
+                                    @Html.DropDownListFor(x => x.tblDetailTiket.bandara_berangkat, tiket_airlines.Controllers.HomeController.getBandara(), new { @class = "form-control", @onchange = "keberangkatan(this.value);" })
 
-                                    </select>
 
                                 </div>
                             </div>
@@ -154,12 +152,10 @@
                                     <label for="metode " class="control-label">
                                         Pilih  Bandara Tujuan
                                     </label>
-                                    <select name="tujuanBandara" id="metode" class="form-control" onchange="tujuan(this.value);">
-                                        <%while(rsTujuan.next()){ %>
-                                        <option value="<%=rsTujuan.getString(1)%>"><%=rsTujuan.getString(2)%></option>
 
-                                        <%}%>
-                                    </select>
+                                    @Html.DropDownListFor(x => x.tblDetailTiket.bandara_tujuan, tiket_airlines.Controllers.HomeController.getBandara(), new { @class = "form-control", @onchange = "tujuan(this.value);" })
+
+
 
                                 </div>
                             </div>
@@ -182,7 +178,8 @@
                                     <label for="harga " class="control-label">
                                         Total Harga
                                     </label>
-                                    <input class="form-control " name="totalHargaTiket" id="totalHarga" placeholder="Total Harga" type="text" value="" readonly>
+                                    @Html.TextBoxFor(u => u.rp_harga_tiket, new { @class = "form-control", @placeholder = "Total Harga", @type = "text", @id = "totalHarga" })
+
 
                                 </div>
                             </div>
@@ -217,16 +214,15 @@
 
 
                             <div id="ketikEmail" class="form-group {{error}} col-md-6">
-                                <div class="input-group col-md-9">
+                                <div class="input-group col-md-12">
                                     <label for="metode " class="control-label">
                                         Pilih Metode Pembayaran
                                     </label>
-                                    <select name="bank" id="metode" class="form-control">
-                                        <option hidden>Pilih Bank</option>
-                                        <option>BCA NO. 98080986643 - Faisal Arkan</option>
-                                        <option>BRI NO. 78787878741 - Sativa Ken</option>
 
-                                    </select>
+                                    @Html.DropDownListFor(x => x.tblDetailTiket.pilihan_bank, new SelectListItem[]{
+
+                new SelectListItem() {Text = "BCA NO. 98080986643 - Faisal Arkan", Value="BCA NO. 98080986643 - Faisal Arkan"},
+                new SelectListItem() {Text = "BRI NO. 78787878741 - Sativa Ken", Value="BRI NO. 78787878741 - Sativa Ken"}}, "Pilih Bank Pembayaran", new { @class = "form-control" })
 
                                 </div>
                             </div>
@@ -239,18 +235,18 @@
                         </div>
 
 
-                        <div style="padding-bottom: 30px; padding-left: 20px;" class="col-md-10 col-md-offset-2">
+                        <div style="padding-bottom: 60px; padding-left: 20px; padding-top:40px;" class="col-md-10 col-md-offset-2">
 
                             <br>
                             <br>
-                            <a class=" btn btn-raised btn-info btn-md" href="/login"> Kembali  </a>
+                            <a class=" btn btn-raised btn-info btn-md" href="@Url.Action("login_user", "Home")"> Kembali  </a>
                             <button id="login" style="margin-left: 10px;" class="btn btn-raised btn-primary " type="submit">  Submit</button>
                         </div>
 
 
                     </div>
 
-}
+                }
 
 
             </div>
@@ -267,3 +263,91 @@
 </body>
 
 @Html.Partial("_Footer")
+
+
+<script>
+    function keberangkatan(idberangkat) {
+
+        console.log(idberangkat)
+
+        $.ajax({
+            type: "GET",
+            cache: false,
+            data: {
+                id: idberangkat,
+
+            },
+            url: "@Url.Action("HargaBandara", "Home")",
+            success: function (data, text) {
+
+                $('#biayaBerangkat').val(data.harga)
+                totalHarga();
+            }
+        });
+
+
+
+    }
+
+
+    function tujuan(idTujuan) {
+
+        console.log(idTujuan)
+
+        $.ajax({
+            type: "GET",
+            cache: false,
+            dataType: 'json',
+            data: {
+                id: idTujuan,
+
+            },
+            url: "@Url.Action("HargaBandara", "Home")",
+            success: function (data, text) {
+
+                $('#biayaTujuan').val(data.harga);
+                totalHarga();
+            }
+        });
+
+
+    }
+
+    function convertToAngka(rupiah) {
+        return parseInt(rupiah.replace(/,.*|[^0-9]/g, ''), 10);
+    }
+
+
+    function toRp(angka) {
+        var rev = parseInt(angka, 10).toString().split('').reverse().join('');
+        var rev2 = '';
+        for (var i = 0; i < rev.length; i++) {
+            rev2 += rev[i];
+            if ((i + 1) % 3 === 0 && i !== (rev.length - 1)) {
+                rev2 += '.';
+            }
+        }
+        return 'Rp. ' + rev2.split('').reverse().join('') + ',00';
+    }
+
+    function totalHarga() {
+
+        var biayaBerangkat = parseFloat(convertToAngka($('#biayaBerangkat').val()));
+        var biayaTujuan = parseFloat(convertToAngka($('#biayaTujuan').val()));
+
+
+        let hargaTotal = biayaBerangkat + biayaTujuan;
+
+        if (isNaN(hargaTotal)) {
+
+        } else {
+
+            console.log(hargaTotal);
+            $('#totalHarga').val(toRp(hargaTotal));
+
+        }
+
+    }
+
+
+</script>
