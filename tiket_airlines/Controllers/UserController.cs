@@ -13,6 +13,8 @@ namespace tiket_airlines.Controllers
     public class UserController : Controller
     {
         tiket_airlinesEntities db = new tiket_airlinesEntities();
+         
+
 
         // GET: User
         public ActionResult dashboard()

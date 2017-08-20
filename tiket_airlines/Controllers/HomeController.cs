@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using tiket_airlines.Helper;
@@ -74,12 +75,17 @@ namespace tiket_airlines.Controllers
         public ActionResult daftar(Gabungan gabungan)
         {
 
+
+            string hashPass = PBKDF2Encription.HashPassword(gabungan.tblPembeli.password);
+
+         
+
             // table Pembeli
             var dbPembeli = new pembeli
             {
                 nm_pembeli = gabungan.tblPembeli.nm_pembeli,
                 email_pembeli = gabungan.tblPembeli.email_pembeli,
-                password = gabungan.tblPembeli.password,
+                password = hashPass,
                 hp_pembeli = gabungan.tblPembeli.hp_pembeli,
                 gd_pembeli = gabungan.tblPembeli.gd_pembeli
             };
@@ -145,6 +151,10 @@ namespace tiket_airlines.Controllers
 
             pembeli pb = db.pembeli.SingleOrDefault(u => u.email_pembeli == postPembeli.email_pembeli);
 
+
+
+            bool DecryptText = PBKDF2Encription.VerifyHashedPassword(pb.password, postPembeli.password);
+
             if (pb == null)
             {
                 ViewBag.htmlError = "has-error";
@@ -152,7 +162,7 @@ namespace tiket_airlines.Controllers
                 return View();
             }
 
-            if (postPembeli.email_pembeli == pb.email_pembeli && postPembeli.password == pb.password)
+            if (postPembeli.email_pembeli == pb.email_pembeli && DecryptText)
             {
                 Session["user"] = pb.nm_pembeli;
                 Session["email"] = pb.email_pembeli;

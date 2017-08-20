@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="tiket_airlinesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="tiket_airlinesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admin">
           <Key>
             <PropertyRef Name="id_admin" />
@@ -44,7 +44,7 @@
           <Property Name="id_pembeli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nm_pembeli" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="email_pembeli" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="225" Nullable="false" />
           <Property Name="hp_pembeli" Type="varchar" MaxLength="225" Nullable="false" />
           <Property Name="gd_pembeli" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
@@ -159,8 +159,7 @@ warning 6035: The relationship 'FK_tgl_pesan_pembeli' has columns that are not p
             <End Role="detil_pesan_tiket" EntitySet="detil_pesan_tiket" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tiket_airlinesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -207,7 +206,7 @@ warning 6035: The relationship 'FK_tgl_pesan_pembeli' has columns that are not p
           <Property Name="id_pembeli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nm_pembeli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email_pembeli" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="hp_pembeli" Type="String" MaxLength="225" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="gd_pembeli" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
