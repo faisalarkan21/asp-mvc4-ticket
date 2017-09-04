@@ -145,15 +145,22 @@ namespace tiket_airlines.Controllers
 
         }
 
+        public void RefreshAllTable()
+        {
+            foreach (var entity in db.ChangeTracker.Entries())
+            {
+                entity.Reload();
+            }
+        }
+
         [HttpPost]
         public ActionResult Login_user(pembeli postPembeli)
         {
 
+            RefreshAllTable();
+
             pembeli pb = db.pembeli.SingleOrDefault(u => u.email_pembeli == postPembeli.email_pembeli);
 
-
-
-            bool DecryptText = PBKDF2Encription.VerifyHashedPassword(pb.password, postPembeli.password);
 
             if (pb == null)
             {
@@ -162,7 +169,10 @@ namespace tiket_airlines.Controllers
                 return View();
             }
 
-            if (postPembeli.email_pembeli == pb.email_pembeli && DecryptText)
+            bool comparePassword = PBKDF2Encription.VerifyHashedPassword(pb.password, postPembeli.password);
+
+
+            if (postPembeli.email_pembeli == pb.email_pembeli && comparePassword)
             {
                 Session["user"] = pb.nm_pembeli;
                 Session["email"] = pb.email_pembeli;
@@ -177,12 +187,14 @@ namespace tiket_airlines.Controllers
             return View();
         }
 
-
+      
         [HttpPost]
         public ActionResult Login_admin(admin postAdmin)
         {
+            RefreshAllTable();
 
-            admin ad = db.admin.SingleOrDefault(u => u.email_admin == postAdmin.email_admin);
+            admin ad = db.admin.SingleOrDefault(u
+                     => u.email_admin == postAdmin.email_admin);
 
             if (ad == null)
             {
@@ -191,7 +203,12 @@ namespace tiket_airlines.Controllers
                 return View();
             }
 
-            if (postAdmin.email_admin == ad.email_admin && postAdmin.pass_admin == ad.pass_admin)
+            bool comparePassword = PBKDF2Encription.VerifyHashedPassword
+                                    (ad.pass_admin, postAdmin.pass_admin);
+
+
+            if (postAdmin.email_admin == ad.email_admin
+                && comparePassword)
             {
                 Session["admin"] = ad.nm_admin;
                 Session["email"] = ad.email_admin;
